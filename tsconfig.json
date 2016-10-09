@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "es2015"
+    ],
+    "outDir": "out",
+    "rootDir": ".",
+    "sourceMap": true,
+    "target": "es2015"
+  },
+  "files": [
+    "src/extension.ts",
+    "test/extension.test.ts",
+    "test/index.ts"
+  ]
+}
