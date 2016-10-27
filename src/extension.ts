@@ -34,10 +34,11 @@ const insertMarkdownAnchors = () => {
       allExpanded.push(anchor);
     });
   }
-  const newExpandeds = allExpanded.filter((expanded) => {
-    return !oldExpandeds.some((i) => i === expanded);
-  });
-  insertExpandeds(document, editor, newExpandeds);
+  const newExpandeds = allExpanded
+    .filter((expanded) => !oldExpandeds.some((i) => i === expanded));
+  const newUniqueExpandeds = newExpandeds
+    .reduce((a, i) => a.some((j) => i === j) ? a : a.concat([i]), []);
+  insertExpandeds(document, editor, newUniqueExpandeds);
 };
 
 export function activate(context: ExtensionContext) {
