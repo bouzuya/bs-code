@@ -1,9 +1,22 @@
-import { ExtensionContext, TextEditor, commands, window } from 'vscode';
+import {
+  ExtensionContext, TextDocument, TextEditor, commands, window
+} from 'vscode';
 import { expand } from 'expand-markdown-anchors';
 
 const isExpanded = (s: string): boolean => {
   const expanded = s.match(/^\[[^\]]+\]:\s+.*$/);
   return expanded !== null;
+};
+
+const insertExpandeds = (
+  document: TextDocument, editor: TextEditor, expandeds: string[]
+): Promise<void> => {
+  return expandeds.reduce((promise, expanded) => {
+    return promise.then(() => editor.edit((builder) => {
+      const eof = document.lineAt(document.lineCount - 1).range.end;
+      builder.insert(eof, '\n' + expanded);
+    }));
+  }, Promise.resolve());
 };
 
 const insertMarkdownAnchors = () => {
@@ -24,13 +37,7 @@ const insertMarkdownAnchors = () => {
   const newExpandeds = allExpanded.filter((expanded) => {
     return !oldExpandeds.some((i) => i === expanded);
   });
-  newExpandeds.reduce((promise, expanded) => {
-    return promise.then(() => editor.edit((builder) => {
-      const eof = document.lineAt(document.lineCount - 1).range.end;
-      builder.insert(eof, '\n' + expanded);
-    }));
-  }, Promise.resolve());
-
+  insertExpandeds(document, editor, newExpandeds);
 };
 
 export function activate(context: ExtensionContext) {
