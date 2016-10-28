@@ -33,6 +33,11 @@ after:
 
 ## Release Notes
 
+### 1.1.0
+
+- Fix a duplicate bug.
+- ... and I made a mistake the version up (this is a patch update).
+
 ### 1.0.0
 
 Initial release
