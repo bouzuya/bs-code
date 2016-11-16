@@ -7,8 +7,9 @@
 ## Features
 
 - expand markdown anchors (`bs-code: Insert Markdown Anchors`)
+- open pair file (`bs-code: Open Pair File`)
 
-### Example
+### Example (expand markdown anchors)
 
 before:
 
@@ -23,6 +24,10 @@ after:
 [bouzuya/bouzuya.net]: https://github.com/bouzuya/bouzuya.net
 ```
 
+### Example (open pair file)
+
+`20160101T000000Z.json` <-> `20161001T000000Z.md`
+
 ### Supported format
 
 - `USER/REPO` -> `https://github.com/USER/REPO`
@@ -32,6 +37,10 @@ after:
 - `YYYY-MM-DD` -> `http://blog.bouzuya.net/YYYY/MM/DD/`
 
 ## Release Notes
+
+### 1.2.0
+
+- Add `bsCode.openPairFile` command.
 
 ### 1.1.0
 
