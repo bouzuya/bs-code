@@ -2,6 +2,7 @@ import {
   ExtensionContext, TextDocument, TextEditor, commands, window
 } from 'vscode';
 import { expand } from 'expand-markdown-anchors';
+import { openPairFile } from './commands/open-pair-file';
 
 const isExpanded = (s: string): boolean => {
   const expanded = s.match(/^\[[^\]]+\]:\s+.*$/);
@@ -42,10 +43,12 @@ const insertMarkdownAnchors = () => {
 };
 
 export function activate(context: ExtensionContext) {
-  const disposable = commands.registerCommand(
+  context.subscriptions.push(commands.registerCommand(
     'bsCode.insertMarkdownAnchors',
-    insertMarkdownAnchors);
-  context.subscriptions.push(disposable);
+    insertMarkdownAnchors));
+  context.subscriptions.push(commands.registerCommand(
+    'bsCode.openPairFile',
+    openPairFile));
 }
 
 export function deactivate() {
