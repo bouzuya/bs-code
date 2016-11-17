@@ -1,7 +1,7 @@
 import {
   TextEditor, window, workspace
 } from 'vscode';
-import { nextPairFilePath } from '../utils/next-pair-file-path';
+import { nextPairFilePath } from '../bs/next-pair-file-path';
 
 const activeFilePath = (
   window: { activeTextEditor: TextEditor | undefined }
