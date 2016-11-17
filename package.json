@@ -27,7 +27,9 @@
   "devDependencies": {
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
+    "@types/sinon": "1.16.32",
     "mocha": "^2.3.3",
+    "sinon": "1.17.6",
     "typescript": "^2.0.3",
     "vsce": "^1.16.0",
     "vscode": "^1.0.0"
