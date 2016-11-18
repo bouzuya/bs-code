@@ -1,14 +1,10 @@
-import { TextDocument, TextEditor, window } from 'vscode';
-import { expand } from 'expand-markdown-anchors';
-
-const isExpanded = (s: string): boolean => {
-  const expanded = s.match(/^\[[^\]]+\]:\s+.*$/);
-  return expanded !== null;
-};
+import { TextEditor, window } from 'vscode';
+import { newExpanded } from '../bs/new-expanded';
 
 const insertExpandeds = (
-  document: TextDocument, editor: TextEditor, expandeds: string[]
+  editor: TextEditor, expandeds: string[]
 ): Promise<void> => {
+  const document = editor.document;
   return expandeds.reduce((promise, expanded) => {
     return promise.then(() => editor.edit((builder) => {
       const eof = document.lineAt(document.lineCount - 1).range.end;
@@ -20,23 +16,14 @@ const insertExpandeds = (
 const insertMarkdownAnchors = (): void => {
   const editor: TextEditor | undefined = window.activeTextEditor;
   if (typeof editor === 'undefined') return; // No open text editor
-  const allExpanded = [];
-  const oldExpandeds = [];
   const document = editor.document;
-  for (let line = 0; line < document.lineCount; line++) {
-    const text = document.lineAt(line).text;
-    if (isExpanded(text)) {
-      oldExpandeds.push(text);
+  const expanded = newExpanded((f: (line: string) => void): void => {
+    for (let i = 0; i < document.lineCount; i++) {
+      const line = document.lineAt(i).text;
+      f(line);
     }
-    expand(text).forEach((anchor) => {
-      allExpanded.push(anchor);
-    });
-  }
-  const newExpandeds = allExpanded
-    .filter((expanded) => !oldExpandeds.some((i) => i === expanded));
-  const newUniqueExpandeds = newExpandeds
-    .reduce((a, i) => a.some((j) => i === j) ? a : a.concat([i]), []);
-  insertExpandeds(document, editor, newUniqueExpandeds);
+  });
+  insertExpandeds(editor, expanded);
 };
 
 export { insertMarkdownAnchors };
