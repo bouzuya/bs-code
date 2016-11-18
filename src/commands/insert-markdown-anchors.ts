@@ -17,7 +17,7 @@ const insertExpandeds = (
   }, Promise.resolve());
 };
 
-const insertMarkdownAnchors = () => {
+const insertMarkdownAnchors = (): void => {
   const editor: TextEditor | undefined = window.activeTextEditor;
   if (typeof editor === 'undefined') return; // No open text editor
   const allExpanded = [];

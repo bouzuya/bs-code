@@ -2,7 +2,7 @@ import { ExtensionContext, commands } from 'vscode';
 import { insertMarkdownAnchors } from './commands/insert-markdown-anchors';
 import { openPairFile } from './commands/open-pair-file';
 
-export function activate(context: ExtensionContext) {
+export function activate(context: ExtensionContext): void {
   context.subscriptions.push(commands.registerCommand(
     'bsCode.insertMarkdownAnchors',
     insertMarkdownAnchors));
@@ -11,5 +11,5 @@ export function activate(context: ExtensionContext) {
     openPairFile));
 }
 
-export function deactivate() {
+export function deactivate(): void {
 }

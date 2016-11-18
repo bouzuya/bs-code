@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import * as proxyquire from 'proxyquire';
 import * as sinon from 'sinon';
 
-const imports = () => {
+const imports = (): any => {
   const push = sinon.stub();
   const context = { subscriptions: { push } };
   const registerCommand = sinon.stub();
