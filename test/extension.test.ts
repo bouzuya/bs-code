@@ -10,12 +10,12 @@ const imports = (): any => {
   registerCommand.onCall(1).returns('registerCommand result2');
   registerCommand.onCall(2).returns('registerCommand result3');
   const commands = { registerCommand };
-  const createB = 'createB';
+  const createAndOpenB = 'createAndOpenB';
   const insertMarkdownAnchors = 'insertMarkdownAnchors';
   const openPairFile = 'openPairFile';
   const extension = proxyquire('../src/extension', {
     'vscode': { commands },
-    './commands/create-b': { createB },
+    './commands/create-and-open-b': { createAndOpenB },
     './commands/insert-markdown-anchors': { insertMarkdownAnchors },
     './commands/open-pair-file': { openPairFile }
   });
@@ -23,7 +23,7 @@ const imports = (): any => {
     commands,
     context,
     extension,
-    createB,
+    createAndOpenB,
     insertMarkdownAnchors,
     openPairFile
   };
@@ -36,7 +36,7 @@ suite('Extension Tests', () => {
       commands,
       context,
       extension: { activate },
-      createB,
+      createAndOpenB,
       insertMarkdownAnchors,
       openPairFile
     } = imports();
@@ -51,8 +51,8 @@ suite('Extension Tests', () => {
     assert(command3 === 'registerCommand result3');
     assert(commands.registerCommand.callCount === 3);
     const [name1, fn1] = commands.registerCommand.getCall(0).args;
-    assert(name1 === 'bsCode.createB');
-    assert(fn1 === createB);
+    assert(name1 === 'bsCode.createAndOpenB');
+    assert(fn1 === createAndOpenB);
     const [name2, fn2] = commands.registerCommand.getCall(1).args;
     assert(name2 === 'bsCode.insertMarkdownAnchors');
     assert(fn2 === insertMarkdownAnchors);
