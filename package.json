@@ -3,6 +3,7 @@
   "description": "bs for code",
   "version": "1.2.0",
   "activationEvents": [
+    "onCommand:bsCode.createAndOpenB",
     "onCommand:bsCode.insertMarkdownAnchors",
     "onCommand:bsCode.openPairFile"
   ],
@@ -11,6 +12,10 @@
   ],
   "contributes": {
     "commands": [
+      {
+        "command": "bsCode.createAndOpenB",
+        "title": "bs-code: Create And Open B"
+      },
       {
         "command": "bsCode.insertMarkdownAnchors",
         "title": "bs-code: Insert Markdown Anchors"
