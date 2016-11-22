@@ -71,8 +71,7 @@ const jsonPath = (rootDirectory: string, b: B): string => {
   return json;
 };
 
-const createB = (homeDirectory: string): string => {
-  const rootDirectory = join(homeDirectory, '.bs-code');
+const createB = (rootDirectory: string): string => {
   const b = newB();
   const md = markdownPath(rootDirectory, b);
   saveB(rootDirectory, b);
