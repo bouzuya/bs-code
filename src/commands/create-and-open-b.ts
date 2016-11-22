@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import { TextEditor, window, workspace } from 'vscode';
+import { createB } from '../bs/create-b';
 
 const getRootDirectory = (): string | null => {
   const config = workspace.getConfiguration('bsCode');
@@ -24,6 +25,10 @@ const createAndOpenB = (): void => {
     window.showErrorMessage(rootDirectoryError);
     return;
   }
+  const bFilePath = createB(rootDirectory);
+  workspace.openTextDocument(bFilePath).then((document) => {
+    window.showTextDocument(document);
+  });
 };
 
 export { createAndOpenB };
