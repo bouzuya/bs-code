@@ -43,6 +43,10 @@ after:
 
 ## Release Notes
 
+### 1.3.1
+
+- Fix `bsCode.rootDirectory` config.
+
 ### 1.3.0
 
 - Add `bsCode.createAndOpenB` command.
