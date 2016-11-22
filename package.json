@@ -24,7 +24,21 @@
         "command": "bsCode.openPairFile",
         "title": "bs-code: Open Pair File"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "bs-code configuration",
+      "properties": {
+        "bsCode.rootDirectory": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "root directory."
+        }
+      }
+    }
   },
   "dependencies": {
     "expand-markdown-anchors": "https://github.com/bouzuya/expand-markdown-anchors/archive/0.2.0.tar.gz"
