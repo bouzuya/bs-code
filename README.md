@@ -38,6 +38,10 @@ after:
 
 ## Release Notes
 
+### 1.3.0
+
+- Add `bsCode.createAndOpenB` command.
+
 ### 1.2.0
 
 - Add `bsCode.openPairFile` command.
