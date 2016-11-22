@@ -6,8 +6,13 @@
 
 ## Features
 
+- create and open b (`bs-code: Create And Open B`)
 - expand markdown anchors (`bs-code: Insert Markdown Anchors`)
 - open pair file (`bs-code: Open Pair File`)
+
+### Example (open pair file)
+
+create `20160101T000000Z.json` and `20161001T000000Z.md`, and open them.
 
 ### Example (expand markdown anchors)
 
