@@ -1,4 +1,4 @@
-import { TextEditor, window, workspace } from 'vscode';
+import { window, workspace } from 'vscode';
 import { nextPairFilePath } from '../bs/next-pair-file-path';
 import { getActiveFilePath } from './_/get-active-file-path';
 

@@ -1,5 +1,4 @@
-import * as fs from 'fs';
-import { TextEditor, window, workspace } from 'vscode';
+import { window, workspace } from 'vscode';
 import { createB } from '../bs/create-b';
 import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
