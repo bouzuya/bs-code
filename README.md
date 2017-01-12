@@ -9,6 +9,7 @@
 - create and open b (`bs-code: Create And Open B`)
 - expand markdown anchors (`bs-code: Insert Markdown Anchors`)
 - open pair file (`bs-code: Open Pair File`)
+- open next/prev file (`bs-code: Open Next File` / `bs-code: Open Prev File`)
 
 ### Example (open pair file)
 
@@ -42,6 +43,11 @@ after:
 - `YYYY-MM-DD` -> `http://blog.bouzuya.net/YYYY/MM/DD/`
 
 ## Release Notes
+
+### 1.4.0
+
+- Add `bsCode.openNextFile` command.
+- Add `bsCode.openPrevFile` command.
 
 ### 1.3.1
 
