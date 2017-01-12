@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { getExtension } from './get-extension';
 
 const baseName = (filePath: string): string => {
-  const extName = path.extname(filePath);
+  const extName = getExtension(filePath);
   const baseName = path.basename(filePath, extName);
   return baseName;
 };
