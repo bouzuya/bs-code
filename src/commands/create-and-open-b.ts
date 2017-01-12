@@ -1,12 +1,7 @@
 import * as fs from 'fs';
 import { TextEditor, window, workspace } from 'vscode';
 import { createB } from '../bs/create-b';
-
-const getRootDirectory = (): string | null => {
-  const config = workspace.getConfiguration('bsCode');
-  const rootDirectory: string | null = config.get('rootDirectory', null);
-  return rootDirectory;
-};
+import { getRootDirectory } from './_/get-root-directory';
 
 const getRootDirectoryError = (rootDirectory: string | null): string => {
   if (rootDirectory === null) {
