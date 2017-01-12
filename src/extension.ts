@@ -2,11 +2,13 @@ import { ExtensionContext, commands } from 'vscode';
 import { createAndOpenB } from './commands/create-and-open-b';
 import { insertMarkdownAnchors } from './commands/insert-markdown-anchors';
 import { openPairFile } from './commands/open-pair-file';
+import { openPrevFile } from './commands/open-prev-file';
 
 const bsCodeCommands = [
   { name: 'bsCode.createAndOpenB', fn: createAndOpenB },
   { name: 'bsCode.insertMarkdownAnchors', fn: insertMarkdownAnchors },
-  { name: 'bsCode.openPairFile', fn: openPairFile }
+  { name: 'bsCode.openPairFile', fn: openPairFile },
+  { name: 'bsCode.openPrevFile', fn: openPrevFile }
 ];
 
 export function activate(context: ExtensionContext): void {

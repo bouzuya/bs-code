@@ -5,7 +5,8 @@
   "activationEvents": [
     "onCommand:bsCode.createAndOpenB",
     "onCommand:bsCode.insertMarkdownAnchors",
-    "onCommand:bsCode.openPairFile"
+    "onCommand:bsCode.openPairFile",
+    "onCommand:bsCode.openPrevFile"
   ],
   "categories": [
     "Other"
@@ -23,6 +24,10 @@
       {
         "command": "bsCode.openPairFile",
         "title": "bs-code: Open Pair File"
+      },
+      {
+        "command": "bsCode.openPrevFile",
+        "title": "bs-code: Open Prev File"
       }
     ],
     "configuration": {
