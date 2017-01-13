@@ -4,13 +4,15 @@ import { insertMarkdownAnchors } from './commands/insert-markdown-anchors';
 import { openNextFile } from './commands/open-next-file';
 import { openPairFile } from './commands/open-pair-file';
 import { openPrevFile } from './commands/open-prev-file';
+import { openSelectedFile } from './commands/open-selected-file';
 
 const bsCodeCommands = [
   { name: 'bsCode.createAndOpenB', fn: createAndOpenB },
   { name: 'bsCode.insertMarkdownAnchors', fn: insertMarkdownAnchors },
   { name: 'bsCode.openNextFile', fn: openNextFile },
   { name: 'bsCode.openPairFile', fn: openPairFile },
-  { name: 'bsCode.openPrevFile', fn: openPrevFile }
+  { name: 'bsCode.openPrevFile', fn: openPrevFile },
+  { name: 'bsCode.openSelectedFile', fn: openSelectedFile }
 ];
 
 export function activate(context: ExtensionContext): void {

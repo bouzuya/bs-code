@@ -7,7 +7,8 @@
     "onCommand:bsCode.insertMarkdownAnchors",
     "onCommand:bsCode.openNextFile",
     "onCommand:bsCode.openPairFile",
-    "onCommand:bsCode.openPrevFile"
+    "onCommand:bsCode.openPrevFile",
+    "onCommand:bsCode.openSelectedFile"
   ],
   "categories": [
     "Other"
@@ -33,6 +34,10 @@
       {
         "command": "bsCode.openPrevFile",
         "title": "bs-code: Open Prev File"
+      },
+      {
+        "command": "bsCode.openSelectedFile",
+        "title": "bs-code: Open Selected File"
       }
     ],
     "configuration": {
