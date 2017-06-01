@@ -8,7 +8,8 @@
     "onCommand:bsCode.openNextFile",
     "onCommand:bsCode.openPairFile",
     "onCommand:bsCode.openPrevFile",
-    "onCommand:bsCode.openSelectedFile"
+    "onCommand:bsCode.openSelectedFile",
+    "onCommand:bsCode.sendToSlack"
   ],
   "categories": [
     "Other"
@@ -38,6 +39,10 @@
       {
         "command": "bsCode.openSelectedFile",
         "title": "bs-code: Open Selected File"
+      },
+      {
+        "command": "bsCode.sendToSlack",
+        "title": "bs-code: Send To Slack"
       }
     ],
     "configuration": {
