@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 import { stringify } from 'querystring';
-import { window, workspace } from 'vscode';
 import { getSelectedText } from './_/get-selected-text';
 import { getSlackChannel } from './_/get-slack-channel';
 import { getSlackToken } from './_/get-slack-token';
@@ -12,7 +11,6 @@ const sendToSlack = (): void => {
   if (slackToken === null) return;
   const selectedText = getSelectedText();
   if (selectedText === null) return;
-  window.showInformationMessage(selectedText);
   const body = stringify({
     as_user: true,
     channel: slackChannel,
