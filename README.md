@@ -44,6 +44,12 @@ after:
 
 ## Release Notes
 
+### 1.5.0
+
+- Add `bsCode.sendToSlack` command.
+- Add `bsCode.slackChannel` config.
+- Add `bsCode.slackToken` config.
+
 ### 1.4.0
 
 - Add `bsCode.openNextFile` command.
