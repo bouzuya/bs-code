@@ -1,4 +1,4 @@
-import * as fetch from 'node-fetch';
+import fetch from 'node-fetch';
 import { stringify } from 'querystring';
 import { window, workspace } from 'vscode';
 import { getSelectedText } from './_/get-selected-text';
