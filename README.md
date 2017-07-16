@@ -44,6 +44,10 @@ after:
 
 ## Release Notes
 
+### 1.5.4
+
+- Fix a bug.
+
 ### 1.5.3
 
 - Fix a `bsCode.insertMarkdownAnchors` command bug.
