@@ -44,6 +44,10 @@ after:
 
 ## Release Notes
 
+### 1.5.1
+
+- Fix a `bsCode.insertMarkdownAnchors` command bug.
+
 ### 1.5.0
 
 - Add `bsCode.sendToSlack` command.
