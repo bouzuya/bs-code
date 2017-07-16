@@ -1,4 +1,4 @@
-import { expand } from 'expand-markdown-anchors';
+import { expand } from '@bouzuya/expand-markdown-anchors';
 
 const isExpanded = (s: string): boolean => {
   const expanded = s.match(/^\[[^\]]+\]:\s+.*$/);

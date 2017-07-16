@@ -6,7 +6,7 @@ const insertExpandeds = (
 ): Promise<void> => {
   const document = editor.document;
   return expandeds.reduce((promise, expanded) => {
-    return promise.then(() => editor.edit((builder) => {
+    return promise.then(() => void editor.edit((builder) => {
       const eof = document.lineAt(document.lineCount - 1).range.end;
       builder.insert(eof, '\n' + expanded);
     }));
