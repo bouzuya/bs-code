@@ -61,7 +61,7 @@
     }
   },
   "dependencies": {
-    "expand-markdown-anchors": "https://github.com/bouzuya/expand-markdown-anchors/archive/0.2.0.tar.gz",
+    "@bouzuya/expand-markdown-anchors": "0.3.0",
     "fs-extra": "^1.0.0",
     "node-fetch": "^1.7.0",
     "time-keeper": "^2.0.0"
