@@ -47,6 +47,13 @@ after:
 
 ## Release Notes
 
+### 2.0.0
+
+- Change minimum vscode version to 1.11.0.
+- Change `bsCode.openSelectedFile` command to match ambiguous date format.
+- Change `bsCode.open*` command to open in current view column.
+- Add `bsCode.openFileListToday` command.
+
 ### 1.5.4
 
 - Fix a bug.
