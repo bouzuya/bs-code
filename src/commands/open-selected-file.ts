@@ -2,6 +2,7 @@ import { join } from 'path';
 import { window, workspace } from 'vscode';
 import { prevFilePath as getPrevFilePath } from '../bs/prev-file-path';
 import { getActiveFilePath } from './_/get-active-file-path';
+import { getActiveViewColumn } from './_/get-active-view-column';
 import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
 import { pairFilePaths } from '../bs/pair-file-paths';
@@ -37,7 +38,8 @@ const openSelectedFile = (): void => {
   );
   const paths = pairFilePaths(path);
   workspace.openTextDocument(paths[1]).then((document) => {
-    window.showTextDocument(document);
+    const viewColumn = getActiveViewColumn(window);
+    window.showTextDocument(document, viewColumn);
   });
 };
 

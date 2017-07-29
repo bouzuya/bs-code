@@ -1,6 +1,7 @@
 import { window, workspace } from 'vscode';
 import { nextFilePath as getNextFilePath } from '../bs/next-file-path';
 import { getActiveFilePath } from './_/get-active-file-path';
+import { getActiveViewColumn } from './_/get-active-view-column';
 import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
 
@@ -16,7 +17,8 @@ const openNextFile = (): void => {
   const prevFilePath = getNextFilePath(rootDirectory, currentFilePath);
   if (prevFilePath === null) return; // No prev file
   workspace.openTextDocument(prevFilePath).then((document) => {
-    window.showTextDocument(document);
+    const viewColumn = getActiveViewColumn(window);
+    window.showTextDocument(document, viewColumn);
   });
 };
 
