@@ -10,6 +10,8 @@
 - expand markdown anchors (`bs-code: Insert Markdown Anchors`)
 - open pair file (`bs-code: Open Pair File`)
 - open next/prev file (`bs-code: Open Next File` / `bs-code: Open Prev File`)
+- open selected file (`bs-code: Open Selected File`)
+- send to slack (`bs-code: Send To Slack`)
 
 ### Example (open pair file)
 
