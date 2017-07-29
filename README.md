@@ -8,6 +8,7 @@
 
 - create and open b (`bs-code: Create And Open B`)
 - expand markdown anchors (`bs-code: Insert Markdown Anchors`)
+- open file list today (`bs-code: Open File List Today`)
 - open pair file (`bs-code: Open Pair File`)
 - open next/prev file (`bs-code: Open Next File` / `bs-code: Open Prev File`)
 - open selected file (`bs-code: Open Selected File`)
