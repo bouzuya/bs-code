@@ -82,7 +82,7 @@
   },
   "displayName": "bs-code",
   "engines": {
-    "vscode": "^1.8.0"
+    "vscode": "^1.11.0"
   },
   "main": "./out/src/extension",
   "publisher": "bouzuya",
