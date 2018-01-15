@@ -90,6 +90,7 @@
   "engines": {
     "vscode": "^1.11.0"
   },
+  "license": "MIT",
   "main": "./out/src/extension",
   "publisher": "bouzuya",
   "scripts": {
