@@ -91,7 +91,7 @@
     "proxyquire": "^1.7.10",
     "sinon": "^2.3.8",
     "typescript": "^2.4.1",
-    "vsce": "^1.29.0",
+    "vsce": "^1.35.0",
     "vscode": "^1.1.4"
   },
   "displayName": "bs-code",
