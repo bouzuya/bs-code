@@ -47,6 +47,10 @@ after:
 
 ## Release Notes
 
+### 2.0.1
+
+- Update dependencies.
+
 ### 2.0.0
 
 - Change minimum vscode version to 1.11.0.
