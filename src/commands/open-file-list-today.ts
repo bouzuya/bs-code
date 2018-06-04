@@ -1,3 +1,4 @@
+import { getPrevFile } from '@bouzuya/bs';
 import * as eaw from 'eastasianwidth';
 import * as fs from 'fs-extra';
 import { join } from 'path';
@@ -18,6 +19,19 @@ const getTodayInMs = (): number => {
   return d.getTime();
 };
 
+const toOneLine = (meta: { created_at: string; }, content: string): string => {
+  const createdAt = meta.created_at;
+  return content
+    .replace(/[\n\r]/g, ' ')
+    .split('')
+    .reduce(({ content, length }, c) => {
+      if (length > 80) return { content, length };
+      const l = eaw.length(content + c);
+      return { content: content + (l > 80 ? '' : c), length: l };
+    }, { content: createdAt + ' ', length: (createdAt + ' ').length })
+    .content;
+};
+
 const openFileListToday = (): void => {
   const rootDirectory = getRootDirectory();
   const rootDirectoryError = getRootDirectoryError(rootDirectory);
@@ -33,28 +47,26 @@ const openFileListToday = (): void => {
     })
     .then((language) => {
       const flowDirectory = join(rootDirectory, 'flow');
-      const content = getFilePaths(flowDirectory)
-        .filter((i) => i.match(/\.json$/) !== null)
-        .map((i) => {
-          const meta = JSON.parse(fs.readFileSync(i, { encoding: 'utf-8' }));
-          return { meta, metaPath: i };
-        })
-        .filter(({ meta }) => new Date(meta.created_at).getTime() >= today)
-        .reduce((a, { meta: { created_at: createdAt }, metaPath }) => {
-          const contentPath = metaPath.replace(/\.json$/, '.md');
-          const content = fs.readFileSync(contentPath, { encoding: 'utf-8' });
-          const line = content
-            .replace(/[\n\r]/g, ' ')
-            .split('')
-            .reduce(({ content, length }, c) => {
-              if (length > 80) return { content, length };
-              const l = eaw.length(content + c);
-              return { content: content + (l > 80 ? '' : c), length: l };
-            }, { content: createdAt + ' ', length: (createdAt + ' ').length })
-            .content;
-          return a + line + '\n';
-        }, '');
-      return { content, language };
+      const f = (
+        a: { content: string; language: string; },
+        x: string | null
+      ): Promise<{ content: string; language: string; }> => {
+        const file = getPrevFile(flowDirectory)(x)();
+        if (file === null) return Promise.resolve(a);
+        const metaPath = file;
+        const metaData = fs.readFileSync(metaPath, { encoding: 'utf-8' });
+        const meta = JSON.parse(metaData);
+        if (new Date(meta.created_at).getTime() < today)
+          return Promise.resolve(a);
+        const contentPath = metaPath.replace(/\.json$/, '.md');
+        const contentData = fs.readFileSync(contentPath, { encoding: 'utf-8' });
+        const line = toOneLine(meta, contentData);
+        return f({
+          content: line + '\n' + a.content,
+          language: a.language
+        }, file);
+      };
+      return f({ content: '', language }, null);
     })
     .then((options) => workspace.openTextDocument(options))
     .then((document) => {
