@@ -49,13 +49,17 @@ after:
 
 ## Release Notes
 
+### 2.1.1
+
+- Update `@bouzuya/bs`.
+
 ### 2.1.0
 
-- Update dependencies
+- Update dependencies.
 
 ### 2.0.2
 
-- Improve `bsCode.openFileListToday` performance
+- Improve `bsCode.openFileListToday` performance.
 
 ### 2.0.1
 
