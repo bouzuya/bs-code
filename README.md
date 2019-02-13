@@ -47,6 +47,14 @@ after:
 
 ## Release Notes
 
+### 2.0.3
+
+- Update dependencies
+
+### 2.0.2
+
+- Improve `bsCode.openFileListToday` performance
+
 ### 2.0.1
 
 - Update dependencies.
