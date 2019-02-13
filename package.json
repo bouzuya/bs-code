@@ -77,8 +77,8 @@
     "@bouzuya/bs": "^0.2.0",
     "@bouzuya/expand-markdown-anchors": "^1.2.0",
     "eastasianwidth": "^0.2.0",
-    "fs-extra": "^5.0.0",
-    "node-fetch": "^1.7.3",
+    "fs-extra": "^7.0.1",
+    "node-fetch": "^2.3.0",
     "time-keeper": "^2.0.0"
   },
   "devDependencies": {
