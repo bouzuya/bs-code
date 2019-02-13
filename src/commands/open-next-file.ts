@@ -6,12 +6,13 @@ import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
 
 const openNextFile = (): void => {
-  const rootDirectory = getRootDirectory();
-  const rootDirectoryError = getRootDirectoryError(rootDirectory);
+  const rootDirectoryUnchecked = getRootDirectory();
+  const rootDirectoryError = getRootDirectoryError(rootDirectoryUnchecked);
   if (rootDirectoryError !== null) {
     window.showErrorMessage(rootDirectoryError);
     return;
   }
+  const rootDirectory = rootDirectoryUnchecked!;
   const currentFilePath = getActiveFilePath(window);
   if (currentFilePath === null) return;
   const prevFilePath = getNextFilePath(rootDirectory, currentFilePath);

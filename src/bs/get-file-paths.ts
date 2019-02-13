@@ -15,7 +15,7 @@ const getFilePaths = (filePath: string): string[] => {
       return readdirSync(filePath)
         .reduce((a, i) => {
           return a.concat(getFilePaths(join(filePath, i)));
-        }, []);
+        }, [] as string[]);
   }
 };
 

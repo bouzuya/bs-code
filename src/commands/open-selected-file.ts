@@ -20,12 +20,13 @@ const getSelectedText = (): string | null => {
 };
 
 const openSelectedFile = (): void => {
-  const rootDirectory = getRootDirectory();
-  const rootDirectoryError = getRootDirectoryError(rootDirectory);
+  const rootDirectoryUnchecked = getRootDirectory();
+  const rootDirectoryError = getRootDirectoryError(rootDirectoryUnchecked);
   if (rootDirectoryError !== null) {
     window.showErrorMessage(rootDirectoryError);
     return;
   }
+  const rootDirectory = rootDirectoryUnchecked!;
   const selectedText = getSelectedText();
   if (selectedText === null) return;
   const text = new Date(selectedText.trim())

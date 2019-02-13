@@ -2,10 +2,8 @@ import { getPrevFile } from '@bouzuya/bs';
 import * as eaw from 'eastasianwidth';
 import * as fs from 'fs-extra';
 import { join } from 'path';
-import { ViewColumn, languages, window, workspace } from 'vscode';
+import { languages, window, workspace } from 'vscode';
 
-import { getFilePaths } from '../bs/get-file-paths';
-import { nextPairFilePath } from '../bs/next-pair-file-path';
 import { getActiveViewColumn } from './_/get-active-view-column';
 import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
@@ -33,12 +31,13 @@ const toOneLine = (meta: { created_at: string; }, content: string): string => {
 };
 
 const openFileListToday = (): void => {
-  const rootDirectory = getRootDirectory();
-  const rootDirectoryError = getRootDirectoryError(rootDirectory);
+  const rootDirectoryUnchecked = getRootDirectory();
+  const rootDirectoryError = getRootDirectoryError(rootDirectoryUnchecked);
   if (rootDirectoryError !== null) {
     window.showErrorMessage(rootDirectoryError);
     return;
   }
+  const rootDirectory = rootDirectoryUnchecked!;
   const today = getTodayInMs();
   languages.getLanguages()
     .then((languages) => {

@@ -5,12 +5,13 @@ import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
 
 const createAndOpenB = (): void => {
-  const rootDirectory = getRootDirectory();
-  const rootDirectoryError = getRootDirectoryError(rootDirectory);
+  const rootDirectoryUnchecked = getRootDirectory();
+  const rootDirectoryError = getRootDirectoryError(rootDirectoryUnchecked);
   if (rootDirectoryError !== null) {
     window.showErrorMessage(rootDirectoryError);
     return;
   }
+  const rootDirectory = rootDirectoryUnchecked!;
   const bFilePath = createB(rootDirectory);
   workspace.openTextDocument(bFilePath).then((document) => {
     const viewColumn = getActiveViewColumn(window);

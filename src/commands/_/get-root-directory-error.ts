@@ -1,6 +1,6 @@
 import { statSync } from 'fs';
 
-const getRootDirectoryError = (rootDirectory: string | null): string => {
+const getRootDirectoryError = (rootDirectory: string | null): string | null => {
   if (rootDirectory === null) {
     return 'bsCode.rootDirectory is null';
   }

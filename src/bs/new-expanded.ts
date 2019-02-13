@@ -6,8 +6,8 @@ const isExpanded = (s: string): boolean => {
 };
 
 const newExpanded = (each: (f: (line: string) => void) => void): string[] => {
-  const all = [];
-  const old = [];
+  const all = [] as string[];
+  const old = [] as string[];
   each((line) => {
     if (isExpanded(line)) {
       old.push(line);
@@ -18,7 +18,10 @@ const newExpanded = (each: (f: (line: string) => void) => void): string[] => {
   });
   return all
     .filter((expanded) => !old.some((i) => i === expanded))
-    .reduce((a, i) => a.some((j) => i === j) ? a : a.concat([i]), []);
+    .reduce(
+      (a, i) => a.some((j) => i === j) ? a : a.concat([i]),
+      [] as string[]
+    );
 };
 
 export { newExpanded };
