@@ -6,7 +6,6 @@ import { inTimeZone } from 'time-keeper/in-time-zone';
 import { parseUNIXTime } from 'time-keeper/parse-unix-time';
 import { toISOString } from 'time-keeper/to-iso-string';
 import { toUNIXTime } from 'time-keeper/to-unix-time';
-import { toTimeZoneOffsetString } from 'time-keeper/to-time-zone-offset-string';
 
 interface B {
   createdAt: number; // unix time (s)

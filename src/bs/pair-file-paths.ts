@@ -8,8 +8,6 @@ const baseName = (filePath: string): string => {
   return baseName;
 };
 
-const fileName = (filePath: string): string => path.basename(filePath);
-
 const dirName = (filePath: string): string => path.dirname(filePath);
 
 const pairFilePaths = (filePath: string): string[] => {
