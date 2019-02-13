@@ -75,7 +75,7 @@
   },
   "dependencies": {
     "@bouzuya/bs": "^0.1.0",
-    "@bouzuya/expand-markdown-anchors": "^0.3.1",
+    "@bouzuya/expand-markdown-anchors": "^1.2.0",
     "eastasianwidth": "^0.2.0",
     "fs-extra": "^5.0.0",
     "node-fetch": "^1.7.3",
