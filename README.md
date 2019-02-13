@@ -43,12 +43,15 @@ after:
 - `USER/REPO#NUM` -> `https://github.com/USER/REPO/issues/NUM`
 - `asin:ASIN` -> `https://www.amazon.co.jp/dp/ASIN/`
 - `npm:PKG` -> `https://www.npmjs.com/package/PKG`
+- `rfc:NUM` -> `https://tools.ietf.org/html/rfcNUM`
+- `vscode:USER.EXT` -> `https://marketplace.visualstudio.com/items?itemName=USER.EXT`
 - `YYYY-MM-DD` -> `http://blog.bouzuya.net/YYYY/MM/DD/`
 
 ## Release Notes
 
-### 2.0.3
+### 2.1.0
 
+- Update dependencies
 - Update dependencies
 
 ### 2.0.2
