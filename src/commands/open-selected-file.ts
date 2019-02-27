@@ -1,20 +1,14 @@
 import { join } from 'path';
 import { window, workspace } from 'vscode';
+import { pairFilePaths } from '../bs/pair-file-paths';
 import { getActiveViewColumn } from './_/get-active-view-column';
 import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
-import { pairFilePaths } from '../bs/pair-file-paths';
+import { getCursorText } from './_/get-cursor-text';
+import { getSelectedText } from './_/get-selected-text';
 
-const getSelectedText = (): string | null => {
-  const editor = window.activeTextEditor;
-  if (typeof editor === 'undefined') return null; // No active text editor
-  const document = editor.document;
-  const selectedText = document.getText(
-    editor.selection.isEmpty
-      ? document.getWordRangeAtPosition(editor.selection.active, /[0-9TZ+:-]+/)
-      : editor.selection
-  );
-  return selectedText;
+const alt = (s1: string | null, s2: string | null): string | null => {
+  return s1 !== null ? s1 : s2;
 };
 
 const openSelectedFile = (): void => {
@@ -25,7 +19,7 @@ const openSelectedFile = (): void => {
     return;
   }
   const rootDirectory = rootDirectoryUnchecked!;
-  const selectedText = getSelectedText();
+  const selectedText = alt(getSelectedText(), getCursorText(/[0-9TZ+:-]+/));
   if (selectedText === null) return;
   const text = new Date(selectedText.trim())
     .toISOString()
