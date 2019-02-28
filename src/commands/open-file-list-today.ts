@@ -1,34 +1,13 @@
-import { getPrevFile } from '@bouzuya/bs';
-import * as eaw from 'eastasianwidth';
-import * as fs from 'fs-extra';
 import { join } from 'path';
+import { now } from 'time-keeper/now';
+import { toISOString } from 'time-keeper/to-iso-string';
 import { languages, window, workspace } from 'vscode';
-
+import { loadB } from '../bs/b';
+import { findIds } from '../bs/find-ids';
+import { toSummary } from '../bs/to-summary';
 import { getActiveViewColumn } from './_/get-active-view-column';
 import { getRootDirectory } from './_/get-root-directory';
 import { getRootDirectoryError } from './_/get-root-directory-error';
-
-const getTodayInMs = (): number => {
-  const d = new Date();
-  d.setHours(0);
-  d.setMinutes(0);
-  d.setSeconds(0);
-  d.setMilliseconds(0);
-  return d.getTime();
-};
-
-const toOneLine = (meta: { created_at: string; }, content: string): string => {
-  const createdAt = meta.created_at;
-  return content
-    .replace(/[\n\r]/g, ' ')
-    .split('')
-    .reduce(({ content, length }, c) => {
-      if (length > 80) return { content, length };
-      const l = eaw.length(content + c);
-      return { content: content + (l > 80 ? '' : c), length: l };
-    }, { content: createdAt + ' ', length: (createdAt + ' ').length })
-    .content;
-};
 
 const openFileListToday = (): void => {
   const rootDirectoryUnchecked = getRootDirectory();
@@ -38,7 +17,6 @@ const openFileListToday = (): void => {
     return;
   }
   const rootDirectory = rootDirectoryUnchecked!;
-  const today = getTodayInMs();
   languages.getLanguages()
     .then((languages) => {
       if (languages.indexOf('markdown') < 0) return Promise.reject(new Error());
@@ -46,26 +24,12 @@ const openFileListToday = (): void => {
     })
     .then((language) => {
       const flowDirectory = join(rootDirectory, 'flow');
-      const f = (
-        a: { content: string; language: string; },
-        x: string | null
-      ): Promise<{ content: string; language: string; }> => {
-        const file = getPrevFile(flowDirectory)(x)();
-        if (file === null) return Promise.resolve(a);
-        const metaPath = file;
-        const metaData = fs.readFileSync(metaPath, { encoding: 'utf-8' });
-        const meta = JSON.parse(metaData);
-        if (new Date(meta.created_at).getTime() < today)
-          return Promise.resolve(a);
-        const contentPath = metaPath.replace(/\.json$/, '.md');
-        const contentData = fs.readFileSync(contentPath, { encoding: 'utf-8' });
-        const line = toOneLine(meta, contentData);
-        return f({
-          content: line + '\n' + a.content,
-          language: a.language
-        }, file);
-      };
-      return f({ content: '', language }, null);
+      const date = toISOString(now()).substring(0, 'YYYY-MM-DD'.length);
+      const ids = findIds(flowDirectory, date);
+      const content = ids
+        .map((id) => toSummary(loadB(rootDirectory, id)))
+        .join('\n');
+      return { content, language };
     })
     .then((options) => workspace.openTextDocument(options))
     .then((document) => {
