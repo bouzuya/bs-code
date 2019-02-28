@@ -10,6 +10,7 @@
   "activationEvents": [
     "onCommand:bsCode.createAndOpenB",
     "onCommand:bsCode.insertMarkdownAnchors",
+    "onCommand:bsCode.openFileList",
     "onCommand:bsCode.openFileListToday",
     "onCommand:bsCode.openNextFile",
     "onCommand:bsCode.openPairFile",
@@ -32,6 +33,10 @@
       {
         "command": "bsCode.insertMarkdownAnchors",
         "title": "bs-code: Insert Markdown Anchors"
+      },
+      {
+        "command": "bsCode.openFileList",
+        "title": "bs-code: Open File List"
       },
       {
         "command": "bsCode.openFileListToday",
