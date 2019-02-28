@@ -19,12 +19,11 @@ const loadB = (rootDirectory: string, id: bid.BID): B => {
   const options = { encoding: 'utf-8' };
   const metaPath = bid.toMetaFilePath(rootDirectory, id);
   const contentPath = bid.toContentFilePath(rootDirectory, id);
-  const metaData = fs.readJSONSync(metaPath, options);
-  const metaObj = JSON.parse(metaData);
+  const metaObj = fs.readJSONSync(metaPath, options);
   const createdAt = toUNIXTime(parseISOString(metaObj.created_at));
   const tags = typeof metaObj.tags === 'undefined' ? [] : metaObj.tags;
   const meta = { createdAt, tags };
-  const content = fs.readJSONSync(contentPath, options);
+  const content = fs.readFileSync(contentPath, options);
   return { content, meta };
 };
 
