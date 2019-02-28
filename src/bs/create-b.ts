@@ -8,16 +8,20 @@ import { toISOString } from 'time-keeper/to-iso-string';
 import { toUNIXTime } from 'time-keeper/to-unix-time';
 
 interface B {
-  createdAt: number; // unix time (s)
-  data: string; // markdown
-  tags: string[];
+  content: string; // markdown
+  meta: {
+    createdAt: number; // unix time (s)
+    tags: string[];
+  };
 }
 
 const newB = (): B => {
   return {
-    createdAt: toUNIXTime(now()),
-    data: '',
-    tags: []
+    content: '',
+    meta: {
+      createdAt: toUNIXTime(now()),
+      tags: []
+    }
   };
 };
 
@@ -28,21 +32,22 @@ const toISODateString = (dt: DateTime): string => {
 
 const toIdString = (id: B): string => {
   // YYYY-MM-DDTHH:MM:SSZ -> YYYYMMDDTHHMMSSZ
-  const isoString = toISOString(inTimeZone(parseUNIXTime(id.createdAt), 'Z'));
+  const isoString =
+    toISOString(inTimeZone(parseUNIXTime(id.meta.createdAt), 'Z'));
   return isoString.replace(/[-:]/g, '');
 };
 
 const toDirectoryPath = (rootDirectory: string, id: B): string => {
   // YYYY-MM-DDTHH:MM:SSZ -> root/YYYY/MM/DD
-  const isoDateString = toISODateString(parseUNIXTime(id.createdAt));
+  const isoDateString = toISODateString(parseUNIXTime(id.meta.createdAt));
   return join(rootDirectory, isoDateString.split('-').join(sep));
 };
 
 const toMetaJson = (b: B): string => {
-  const createdAt = toISOString(parseUNIXTime(b.createdAt));
+  const createdAt = toISOString(parseUNIXTime(b.meta.createdAt));
   const meta = Object.assign(
     { created_at: createdAt },
-    (b.tags.length > 0 ? { tags: b.tags } : {}),
+    (b.meta.tags.length > 0 ? { tags: b.meta.tags } : {}),
     // shared: [
     //   { type: 'twitter', url: 'http://example.com' }
     // ]
