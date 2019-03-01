@@ -36,8 +36,10 @@ const openFileList = (date: string): void => {
   const rootDirectory = rootDirectoryUnchecked!;
   languages.getLanguages()
     .then((languages) => {
-      if (languages.indexOf('markdown') < 0) return Promise.reject(new Error());
-      return Promise.resolve('markdown');
+      const language = 'plaintext';
+      return languages.includes(language)
+        ? Promise.resolve(language)
+        : Promise.reject(new Error(`${language}`));
     })
     .then((language) => {
       const flowDirectory = join(rootDirectory, 'flow');
