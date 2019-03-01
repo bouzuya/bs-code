@@ -6,6 +6,25 @@ import { getRootDirectory } from '../_/get-root-directory';
 import { getRootDirectoryError } from '../_/get-root-directory-error';
 import { toSummary } from '../../bs/to-summary';
 import { findIds } from '../../bs/find-ids';
+import { parseISOString } from 'time-keeper/parse-iso-string';
+import { plus } from 'time-keeper/plus';
+import { toISOString } from 'time-keeper/to-iso-string';
+import { now } from 'time-keeper/now';
+
+const buildHeader = (date: string): string => {
+  const timeZone =
+    toISOString(now()).substring('YYYY-MM-DDT00:00:00'.length);
+  const dt = parseISOString(date + 'T00:00:00' + timeZone);
+  const next = plus(dt, 1, 'day');
+  const prev = plus(dt, -1, 'day');
+  return [
+    toISOString(prev).substring(0, 'YYYY-MM-DD'.length),
+    '<<',
+    date,
+    '>>',
+    toISOString(next).substring(0, 'YYYY-MM-DD'.length)
+  ].join(' ');
+};
 
 const openFileList = (date: string): void => {
   const rootDirectoryUnchecked = getRootDirectory();
@@ -23,12 +42,12 @@ const openFileList = (date: string): void => {
     .then((language) => {
       const flowDirectory = join(rootDirectory, 'flow');
       const ids = findIds(flowDirectory, date);
-      const content = ids
-        .map((id) => {
+      const header = buildHeader(date);
+      const content = header + '\n' +
+        ids.map((id) => {
           const loaded = b.loadB(rootDirectory, id);
           return toSummary(loaded);
-        })
-        .join('\n');
+        }).join('\n');
       return { content, language };
     })
     .then((options) => workspace.openTextDocument(options))
