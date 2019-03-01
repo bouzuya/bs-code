@@ -49,6 +49,12 @@ after:
 
 ## Release Notes
 
+### 2.2.0
+
+- Add `bsCode.openFileList`
+- Add `bsCode.openFileListToday` header.
+- Change `bsCode.openFileListToday` language.
+
 ### 2.1.1
 
 - Update `@bouzuya/bs`.
