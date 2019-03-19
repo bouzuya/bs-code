@@ -16,6 +16,7 @@
     "onCommand:bsCode.openPairFile",
     "onCommand:bsCode.openPrevFile",
     "onCommand:bsCode.openSelectedFile",
+    "onCommand:bsCode.quoteSelectedFile",
     "onCommand:bsCode.sendToSlack"
   ],
   "bugs": {
@@ -57,6 +58,10 @@
       {
         "command": "bsCode.openSelectedFile",
         "title": "bs-code: Open Selected File"
+      },
+      {
+        "command": "bsCode.quoteSelectedFile",
+        "title": "bs-code: Quote Selected File"
       },
       {
         "command": "bsCode.sendToSlack",
