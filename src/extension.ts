@@ -7,6 +7,7 @@ import { openNextFile } from './commands/open-next-file';
 import { openPairFile } from './commands/open-pair-file';
 import { openPrevFile } from './commands/open-prev-file';
 import { openSelectedFile } from './commands/open-selected-file';
+import { openSelectedFileBeside } from './commands/open-selected-file-beside';
 import { quoteSelectedFile } from './commands/quote-selected-file';
 import { sendToSlack } from './commands/send-to-slack';
 
@@ -19,6 +20,7 @@ const bsCodeCommands = [
   { name: 'bsCode.openPairFile', fn: openPairFile },
   { name: 'bsCode.openPrevFile', fn: openPrevFile },
   { name: 'bsCode.openSelectedFile', fn: openSelectedFile },
+  { name: 'bsCode.openSelectedFileBeside', fn: openSelectedFileBeside },
   { name: 'bsCode.quoteSelectedFile', fn: quoteSelectedFile },
   { name: 'bsCode.sendToSlack', fn: sendToSlack }
 ];

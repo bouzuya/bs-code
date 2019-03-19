@@ -16,6 +16,7 @@
     "onCommand:bsCode.openPairFile",
     "onCommand:bsCode.openPrevFile",
     "onCommand:bsCode.openSelectedFile",
+    "onCommand:bsCode.openSelectedFileBeside",
     "onCommand:bsCode.quoteSelectedFile",
     "onCommand:bsCode.sendToSlack"
   ],
@@ -58,6 +59,10 @@
       {
         "command": "bsCode.openSelectedFile",
         "title": "bs-code: Open Selected File"
+      },
+      {
+        "command": "bsCode.openSelectedFileBeside",
+        "title": "bs-code: Open Selected File Beside"
       },
       {
         "command": "bsCode.quoteSelectedFile",
