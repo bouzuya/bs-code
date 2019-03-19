@@ -6,13 +6,17 @@
 
 ## Features
 
+### Commands
+
 - create and open b (`bs-code: Create And Open B`)
 - expand markdown anchors (`bs-code: Insert Markdown Anchors`)
+- open b or bs (`bs-code: Open B Or Bs`)
 - open file list (`bs-code: Open File List`)
 - open file list today (`bs-code: Open File List Today`)
 - open pair file (`bs-code: Open Pair File`)
 - open next/prev file (`bs-code: Open Next File` / `bs-code: Open Prev File`)
-- open selected file (`bs-code: Open Selected File`)
+- open selected file (`bs-code: Open Selected File` / `bs-code: Open Selected File Beside`)
+- quote selected file (`bs-code: Quote Selected File`)
 - send to slack (`bs-code: Send To Slack`)
 
 ### Example (open pair file)
@@ -49,6 +53,12 @@ after:
 - `YYYY-MM-DD` -> `http://blog.bouzuya.net/YYYY/MM/DD/`
 
 ## Release Notes
+
+### 2.3.0
+
+- Add `bsCode.openBOrBs`
+- Add `bsCode.openSelectedFileBeside`
+- Add `bsCode.quoteSelectedFile`
 
 ### 2.2.0
 
