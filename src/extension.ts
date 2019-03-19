@@ -1,6 +1,7 @@
 import { ExtensionContext, commands } from 'vscode';
 import { createAndOpenB } from './commands/create-and-open-b';
 import { insertMarkdownAnchors } from './commands/insert-markdown-anchors';
+import { openBOrBs } from './commands/open-b-or-bs';
 import { openFileList } from './commands/open-file-list';
 import { openFileListToday } from './commands/open-file-list-today';
 import { openNextFile } from './commands/open-next-file';
@@ -14,6 +15,7 @@ import { sendToSlack } from './commands/send-to-slack';
 const bsCodeCommands = [
   { name: 'bsCode.createAndOpenB', fn: createAndOpenB },
   { name: 'bsCode.insertMarkdownAnchors', fn: insertMarkdownAnchors },
+  { name: 'bsCode.openBOrBs', fn: openBOrBs },
   { name: 'bsCode.openFileList', fn: openFileList },
   { name: 'bsCode.openFileListToday', fn: openFileListToday },
   { name: 'bsCode.openNextFile', fn: openNextFile },
