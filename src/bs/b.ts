@@ -11,6 +11,7 @@ interface B {
   content: string; // markdown
   meta: {
     createdAt: number; // unix time (s)
+    parents: string[];
     tags: string[];
   };
 }
@@ -21,8 +22,9 @@ const loadB = (rootDirectory: string, id: bid.BID): B => {
   const contentPath = bid.toContentFilePath(rootDirectory, id);
   const metaObj = fs.readJSONSync(metaPath, options);
   const createdAt = toUNIXTime(parseISOString(metaObj.created_at));
+  const parents = typeof metaObj.parents === 'undefined' ? [] : metaObj.parents;
   const tags = typeof metaObj.tags === 'undefined' ? [] : metaObj.tags;
-  const meta = { createdAt, tags };
+  const meta = { createdAt, parents, tags };
   const content = fs.readFileSync(contentPath, options);
   return { content, meta };
 };
@@ -32,6 +34,7 @@ const newB = (): B => {
     content: '',
     meta: {
       createdAt: toUNIXTime(now()),
+      parents: [],
       tags: []
     }
   };
@@ -41,6 +44,7 @@ const toMetaJson = (b: B): string => {
   const createdAt = toISOString(parseUNIXTime(b.meta.createdAt));
   const meta = Object.assign(
     { created_at: createdAt },
+    (b.meta.parents.length > 0 ? { parents: b.meta.parents } : {}),
     (b.meta.tags.length > 0 ? { tags: b.meta.tags } : {}),
     // shared: [
     //   { type: 'twitter', url: 'http://example.com' }
