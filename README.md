@@ -54,6 +54,16 @@ after:
 
 ## Release Notes
 
+### 2.4.0
+
+- Improve the following commands (support ambiguous format).
+  - `bsCode.openBOrBs`
+  - `bsCode.openFileList`
+  - `bsCode.openFileListToday`
+  - `bsCode.openSelectedFile`
+  - `bsCode.openSelectedFileBeside`
+  - `bsCode.quoteSelectedFile`
+
 ### 2.3.0
 
 - Add `bsCode.openBOrBs`
