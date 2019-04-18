@@ -12,7 +12,24 @@ interface BID {
 }
 
 // YYYYMMDDTHHMMSSZ -> id
+// YYYY-MM-DDTHH:MM:SSZ -> id
+// YYYY-MM-DDTHH:MM:SS+HH:MM -> id
+// YYYY-MM-DDTHH:MM:SS-HH:MM -> id
 const fromString = (s: string): BID | null => {
+  const t = s.trim();
+  const p = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[-+]\d{2}:\d{2})$/;
+  const u =
+    t.match(p) !== null
+      ? new Date(t)
+        .toISOString()
+        .replace(/\.\d{3}Z$/, 'Z')
+        .replace(/[-:+]/g, '')
+      : t;
+  return fromStringStrict(u);
+};
+
+// YYYYMMDDTHHMMSSZ -> id
+const fromStringStrict = (s: string): BID | null => {
   const matches = s.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/);
   if (matches === null) return null;
   const d = [matches[1], matches[2], matches[3]].join('-');
