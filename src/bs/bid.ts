@@ -5,11 +5,26 @@ import { parseISOString } from 'time-keeper/parse-iso-string';
 import { toISOString } from 'time-keeper/to-iso-string';
 import { toUNIXTime } from 'time-keeper/to-unix-time';
 import { DateTime } from 'time-keeper/types/date-time';
+import { getBaseName } from './get-base-name';
+import { getExtension } from './get-extension';
 
 interface BID {
   type: 'BID';
   value: number; // unix time (s)
 }
+
+const between = (min: BID, max: BID, x: BID): boolean => {
+  return (0 <= compare(min, x)) && (compare(x, max) <= 0);
+};
+
+const compare = ({ value: a }: BID, { value: b }: BID): number => {
+  return a === b ? 0 : a < b ? -1 : 1;
+};
+
+const fromContentFilePath = (contentFilePath: string): BID | null => {
+  if (getExtension(contentFilePath) !== '.md') return null;
+  return fromString(getBaseName(contentFilePath));
+};
 
 // YYYYMMDDTHHMMSSZ -> id
 // YYYY-MM-DDTHH:MM:SSZ -> id
@@ -54,10 +69,10 @@ const toContentFilePath = (rootDirectory: string, id: BID): string => {
   return path;
 };
 
-const toDirectoryPath = (rootDirectory: string, id: BID): string => {
+const toDirectoryPath = (flowDirectory: string, id: BID): string => {
   // YYYY-MM-DD -> root/YYYY/MM/DD
   const isoDateString = toISODateString(parseUNIXTime(id.value));
-  return join(rootDirectory, isoDateString.split('-').join(sep));
+  return join(flowDirectory, isoDateString.split('-').join(sep));
 };
 
 const toISODateString = (dt: DateTime): string => {
@@ -79,6 +94,9 @@ const toString = (id: BID): string => {
 
 export {
   BID,
+  between,
+  compare,
+  fromContentFilePath,
   fromString,
   toBaseName,
   toContentFilePath,
