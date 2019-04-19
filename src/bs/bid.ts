@@ -14,7 +14,7 @@ interface BID {
 }
 
 const between = (min: BID, max: BID, x: BID): boolean => {
-  return (0 <= compare(min, x)) && (compare(x, max) <= 0);
+  return (compare(min, x) <= 0) && (compare(x, max) <= 0);
 };
 
 const compare = ({ value: a }: BID, { value: b }: BID): number => {
