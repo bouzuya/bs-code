@@ -125,7 +125,7 @@
   "homepage": "https://github.com/bouzuya/bs-code#readme",
   "keywords": [],
   "license": "MIT",
-  "main": "./out/src/extension",
+  "main": "./dist/extension",
   "publisher": "bouzuya",
   "repository": {
     "type": "git",
