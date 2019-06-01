@@ -48,6 +48,10 @@ See: [bouzuya/expand-markdown-anchors][]
 
 ## Release Notes
 
+### 2.5.1
+
+- Fix main property.
+
 ### 2.5.0
 
 - Update @bouzuya/expand-markdown-anchors package to 1.3.0.
