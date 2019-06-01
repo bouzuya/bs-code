@@ -38,19 +38,13 @@ after:
 [bouzuya/bouzuya.net]: https://github.com/bouzuya/bouzuya.net
 ```
 
+See: [bouzuya/expand-markdown-anchors][]
+
+[bouzuya/expand-markdown-anchors]: https://github.com/bouzuya/expand-markdown-anchors
+
 ### Example (open pair file)
 
 `20160101T000000Z.json` <-> `20161001T000000Z.md`
-
-### Supported format
-
-- `USER/REPO` -> `https://github.com/USER/REPO`
-- `USER/REPO#NUM` -> `https://github.com/USER/REPO/issues/NUM`
-- `asin:ASIN` -> `https://www.amazon.co.jp/dp/ASIN/`
-- `npm:PKG` -> `https://www.npmjs.com/package/PKG`
-- `rfc:NUM` -> `https://tools.ietf.org/html/rfcNUM`
-- `vscode:USER.EXT` -> `https://marketplace.visualstudio.com/items?itemName=USER.EXT`
-- `YYYY-MM-DD` -> `http://blog.bouzuya.net/YYYY/MM/DD/`
 
 ## Release Notes
 
