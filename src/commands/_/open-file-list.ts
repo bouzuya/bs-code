@@ -1,15 +1,18 @@
 import { join } from 'path';
-import { languages, window, workspace } from 'vscode';
+import { window, workspace } from 'vscode';
 import * as b from '../../bs/b';
 import { getActiveViewColumn } from '../_/get-active-view-column';
 import { getRootDirectory } from '../_/get-root-directory';
 import { getRootDirectoryError } from '../_/get-root-directory-error';
+import { getTempDirectory } from '../_/get-temp-directory';
 import { toSummary } from '../../bs/to-summary';
 import { findIds } from '../../bs/find-ids';
 import { parseISOString } from 'time-keeper/parse-iso-string';
 import { plus } from 'time-keeper/plus';
 import { toISOString } from 'time-keeper/to-iso-string';
 import { now } from 'time-keeper/now';
+import { tmpNameSync } from 'tmp';
+import { outputFileSync } from 'fs-extra';
 
 const buildHeader = (date: string): string => {
   const timeZone =
@@ -26,7 +29,7 @@ const buildHeader = (date: string): string => {
   ].join(' ');
 };
 
-const openFileList = (date: string): void => {
+const openFileList = async (date: string): Promise<void> => {
   const rootDirectoryUnchecked = getRootDirectory();
   const rootDirectoryError = getRootDirectoryError(rootDirectoryUnchecked);
   if (rootDirectoryError !== null) {
@@ -34,29 +37,22 @@ const openFileList = (date: string): void => {
     return;
   }
   const rootDirectory = rootDirectoryUnchecked!;
-  languages.getLanguages()
-    .then((languages) => {
-      const language = 'plaintext';
-      return languages.includes(language)
-        ? Promise.resolve(language)
-        : Promise.reject(new Error(`${language}`));
-    })
-    .then((language) => {
-      const flowDirectory = join(rootDirectory, 'flow');
-      const ids = findIds(flowDirectory, date);
-      const header = buildHeader(date);
-      const content = header + '\n' +
-        ids.map((id) => {
-          const loaded = b.loadB(rootDirectory, id);
-          return toSummary(loaded);
-        }).join('\n');
-      return { content, language };
-    })
-    .then((options) => workspace.openTextDocument(options))
-    .then((document) => {
-      const viewColumn = getActiveViewColumn(window);
-      window.showTextDocument(document, viewColumn);
-    });
+  const tempDirectoryOrNull = getTempDirectory();
+  const tempFile = tempDirectoryOrNull === null
+    ? tmpNameSync()
+    : tmpNameSync({ dir: tempDirectoryOrNull });
+  const flowDirectory = join(rootDirectory, 'flow');
+  const ids = findIds(flowDirectory, date);
+  const header = buildHeader(date);
+  const content = header + '\n' +
+    ids.map((id) => {
+      const loaded = b.loadB(rootDirectory, id);
+      return toSummary(loaded);
+    }).join('\n');
+  outputFileSync(tempFile, content, { encoding: 'utf8' });
+  const document = await workspace.openTextDocument(tempFile);
+  const viewColumn = getActiveViewColumn(window);
+  window.showTextDocument(document, viewColumn);
 };
 
 export { openFileList };
