@@ -48,6 +48,11 @@ See: [bouzuya/expand-markdown-anchors][]
 
 ## Release Notes
 
+### 2.5.2
+
+- Fix `bsCode.openFileList` to use temporary files.
+- Add `bsCode.tempDirectory` configuration.
+
 ### 2.5.1
 
 - Fix main property.
