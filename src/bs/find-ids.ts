@@ -61,7 +61,7 @@ const findIds1 = (
       .filter((d) => {
         const n = getBaseName(d);
         return (!isFirstYear || since.m <= n) &&
-          (!isLastYear || n <= since.m);
+          (!isLastYear || n <= until.m);
       });
     monthDirs.forEach((monthDir, monthDirIndex) => {
       const isFirstMonth = isFirstYear && monthDirIndex === 0;
@@ -70,7 +70,7 @@ const findIds1 = (
         .filter((d) => {
           const n = getBaseName(d);
           return (!isFirstMonth || since.d <= n) &&
-            (!isLastMonth || n <= since.d);
+            (!isLastMonth || n <= until.d);
         });
       dayOfMonthDirs.forEach((dayOfMonthDir) => {
         ids.push.apply(
