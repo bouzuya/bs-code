@@ -48,6 +48,11 @@ See: [bouzuya/expand-markdown-anchors][]
 
 ## Release Notes
 
+### 2.5.3
+
+- Fix `bsCode.openFileListToday` incorrectly date range checking.
+- Update dependencies.
+
 ### 2.5.2
 
 - Fix `bsCode.openFileList` to use temporary files.
