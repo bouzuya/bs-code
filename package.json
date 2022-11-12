@@ -129,7 +129,7 @@
     "vscode": "^1.1.36",
     "vscode-test": "^1.3.0",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   },
   "displayName": "bs-code",
   "engines": {
